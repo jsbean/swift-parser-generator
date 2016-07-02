@@ -272,7 +272,7 @@ infix operator => {associativity right precedence 100}
 public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
     return {(parser: Parser, reader: Reader) -> Bool in
         let start = reader.position
-        let capture_count = parser.captures.count
+        let captureCount = parser.captures.count
         
         parser.enter("=>")
         
@@ -284,7 +284,7 @@ public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
             return true
         }
         
-        while(parser.captures.count > capture_count) {
+        while(parser.captures.count > captureCount) {
             parser.captures.removeLast()
         }
         parser.leave("=>", false)
