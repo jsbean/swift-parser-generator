@@ -28,7 +28,7 @@ public prefix func ^(name:String) -> ParserRule {
         // check to see if this would cause a recursive loop?
         if(parser.currentNamedRule != name) {
             let oldNamedRule = parser.currentNamedRule
-            let rule = parser.named_rules[name]
+            let rule = parser.namedRules[name]
         
             parser.currentNamedRule = name
             let result = rule!(parser: parser, reader: reader)
@@ -349,7 +349,7 @@ public class Parser {
     public var lastCapture: ParserCapture?
     public var currentReader: Reader?
 
-	var named_rules: Dictionary<String,ParserRule> = Dictionary<String,ParserRule>()
+	var namedRules: Dictionary<String,ParserRule> = Dictionary<String,ParserRule>()
     var currentNamedRule = ""
 
 	/** This rule determines what is seen as 'whitespace' by the '~~'  operator, which allows whitespace between two
@@ -375,7 +375,7 @@ public class Parser {
     }
     
     public func add_named_rule(name:String, rule: ParserRule) {
-        named_rules[name] = rule
+        namedRules[name] = rule
     }
     
     public func rules() {
