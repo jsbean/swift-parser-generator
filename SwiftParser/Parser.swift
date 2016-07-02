@@ -370,8 +370,8 @@ public class Parser {
         rules()
     }
     
-    public init(rule_def: () -> ParserRule) {
-        ruleDefinition = rule_def
+    public init(ruleDefinition: () -> ParserRule) {
+        self.ruleDefinition = ruleDefinition
     }
     
     public func add_named_rule(name:String, rule: ParserRule) {

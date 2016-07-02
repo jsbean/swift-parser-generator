@@ -113,7 +113,7 @@ class SwiftParserTests: XCTestCase {
         }
         
         override func rules() {
-            start_rule = (^"primary")*!*
+            startRule = (^"primary")*!*
             
             let number = ("0"-"9")+ => push
             add_named_rule("primary",   rule: ^"secondary" ~ (("+" ~ ^"secondary" => add) | ("-" ~ ^"secondary" => sub))*)
@@ -125,7 +125,7 @@ class SwiftParserTests: XCTestCase {
     // A recursive parser like the following will always fail as it results in an infinite recursive loop.  Code has been added to try to catch this, but you have been warned!
     class RecursiveArith : Arith {
         override func rules() {
-            start_rule = (^"term")*!*
+            startRule = (^"term")*!*
             
             let num = ("0"-"9")+ => push
             add_named_rule("term", rule: ((^"term" ~ "+" ~ ^"fact") => add) | ((^"term" ~ "-" ~ ^"fact") => sub) | ^"fact")
