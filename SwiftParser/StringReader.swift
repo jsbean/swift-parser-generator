@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class StringReader : Reader {
+public class StringReader: Reader {
     var string: String
     var index: String.Index
     
@@ -23,7 +23,7 @@ public class StringReader : Reader {
         index = string.startIndex;
     }
     
-    public func seek(position:Int) {
+    public func seek(position: Int) {
         index = string.startIndex.advancedBy(position)
     }
     
@@ -46,8 +46,10 @@ public class StringReader : Reader {
       return string.substringFromIndex(index)
     }
   
-    public func substring(startingAt:Int, endingAt:Int) -> String {
-        return string.substringWithRange(string.startIndex.advancedBy(startingAt)..<string.startIndex.advancedBy(endingAt))
+    public func substring(startingAt startIndex: Int, endingAt endIndex: Int) -> String {
+        return string.substringWithRange(
+            string.startIndex.advancedBy(startIndex)..<string.startIndex.advancedBy(endIndex)
+        )
     }
     
 }
