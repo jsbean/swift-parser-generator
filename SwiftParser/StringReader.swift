@@ -29,14 +29,10 @@ public class StringReader: Reader {
     }
     
     public func read() -> Character {
-        if index != string.endIndex {
-            let result = string[index]
-            index = index.successor()
-            
-            return result
-        }
-        
-        return "\u{2004}"
+        guard index != string.endIndex else { return "\u{2004}" }
+        let result = string[index]
+        index = index.successor()
+        return result
     }
     
     public func eof() -> Bool {
