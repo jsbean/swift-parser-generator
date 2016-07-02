@@ -48,6 +48,11 @@ public prefix func ^(name: String) -> ParserRule {
 // match a regex
 prefix operator %! { }
 
+/**
+ Match a regular expression with the given `pattern`.
+ 
+ - returns: `ParserRule`.
+ */
 public prefix func %!(pattern: String) -> ParserRule {
     
     return { (parser: Parser, reader: Reader) -> Bool in
@@ -84,6 +89,11 @@ public prefix func %!(pattern: String) -> ParserRule {
 // match a literal string
 prefix operator % { }
 
+/**
+ Match a string literal.
+ 
+ - returns: `Parser Rule`.
+ */
 public prefix func %(lit: String) -> ParserRule {
     return literal(lit)
 }
@@ -109,7 +119,13 @@ public func literal(string: String) -> ParserRule {
     }
 }
 
-// match a range of characters eg: "0"-"9"
+/**
+ Match a range of characters.
+ 
+ For example, `"0"-"9"`
+ 
+ - returns: `ParserRule`.
+ */
 public func - (left: Character, right: Character) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("range [\(left)-\(right)]")
@@ -130,7 +146,11 @@ public func - (left: Character, right: Character) -> ParserRule {
     }
 }
 
-// invert match
+/**
+ Invert a given match.
+ 
+ - returns: `ParserRule`.
+ */
 public prefix func !(rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         return !rule(parser: parser, reader: reader)
@@ -141,9 +161,13 @@ public prefix func !(lit: String) -> ParserRule {
     return !literal(lit)
 }
 
-// match one or more
 postfix operator + { }
 
+/**
+ Match one or more.
+ 
+ - returns: `ParserRule`.
+ */
 public postfix func + (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         let position = reader.position
@@ -171,9 +195,13 @@ public postfix func + (lit: String) -> ParserRule {
 }
 
 
-// match zero or more
 postfix operator * { }
 
+/**
+ Match zero or more.
+
+ - returns: `ParserRule`.
+ */
 public postfix func * (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         var flag: Bool
@@ -202,6 +230,11 @@ public postfix func * (lit: String) -> ParserRule {
 // optional
 postfix operator /~ { }
 
+/**
+ Optionally match.
+ 
+ - returns: `ParserRule`.
+ */
 public postfix func /~ (rule: ParserRule) -> ParserRule {
     
     return {(parser: Parser, reader: Reader) -> Bool in
@@ -221,19 +254,38 @@ public postfix func /~ (lit: String) -> ParserRule {
     return literal(lit)/~
 }
 
-// match either
+/**
+ Match either.
+ 
+ - returns: `ParserRule`.
+ */
 public func | (left: String, right: String) -> ParserRule {
     return literal(left) | literal(right)
 }
 
+/**
+ Match either.
+ 
+ - returns: `ParserRule`.
+ */
 public func | (left: String, right: ParserRule) -> ParserRule {
     return literal(left) | right
 }
 
+/**
+ Match either.
+ 
+ - returns: `ParserRule`.
+ */
 public func | (left: ParserRule, right: String) -> ParserRule {
     return left | literal(right)
 }
 
+/**
+ Match either.
+ 
+ - returns: `ParserRule`.
+ */
 public func | (left: ParserRule, right: ParserRule) -> ParserRule {
     return {(parser: Parser, reader: Reader) -> Bool in
         parser.enter("|")
@@ -256,18 +308,38 @@ public func | (left: ParserRule, right: ParserRule) -> ParserRule {
 // match all
 infix operator  ~ { associativity left precedence 10 }
 
+/**
+ Match all.
+ 
+ - returns: `ParserRule`
+ */
 public func ~ (left: String, right: String) -> ParserRule {
     return literal(left) ~ literal(right)
 }
 
+/**
+ Match all.
+ 
+ - returns: `ParserRule`
+ */
 public func ~ (left: String, right: ParserRule) -> ParserRule {
     return literal(left) ~ right
 }
 
+/**
+ Match all.
+ 
+ - returns: `ParserRule`
+ */
 public func ~ (left: ParserRule, right: String) -> ParserRule {
     return left ~ literal(right)
 }
 
+/**
+ Match all.
+ 
+ - returns: `ParserRule`
+ */
 public func ~ (left : ParserRule, right: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("~")
@@ -280,6 +352,11 @@ public func ~ (left : ParserRule, right: ParserRule) -> ParserRule {
 // on match
 infix operator => { associativity right precedence 100 }
 
+/**
+ On match.
+ 
+ - returns: `ParserRule`.
+ */
 public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
     
     return { (parser: Parser, reader: Reader) -> Bool in
