@@ -448,10 +448,7 @@ public class Parser {
     }
     
     func out(name: String) {
-        var spaces = ""
-        for _ in 0..<depth-1 {
-            spaces += "  "
-        }
+        let spaces = (0 ..< (depth - 1)).map { _ in "  " }
         print("\(spaces)\(name)")
     }
 }
