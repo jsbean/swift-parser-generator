@@ -27,12 +27,12 @@ public prefix func ^(name:String) -> ParserRule {
         
         // check to see if this would cause a recursive loop?
         if(parser.currentNamedRule != name) {
-            let old_named_rule = parser.currentNamedRule
+            let oldNamedRule = parser.currentNamedRule
             let rule = parser.named_rules[name]
         
             parser.currentNamedRule = name
             let result = rule!(parser: parser, reader: reader)
-            parser.currentNamedRule = old_named_rule
+            parser.currentNamedRule = oldNamedRule
             
             parser.leave("named rule: \(name)",result)
             return result
