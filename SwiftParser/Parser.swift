@@ -70,8 +70,8 @@ public class Parser {
     public init(ruleDefinition: ParserRuleDefinition) {
         self.ruleDefinition = ruleDefinition
     }
-    
-    public func addNamedRule(name: String, rule: ParserRule) {
+
+    public func addRule(name name: String, rule: ParserRule) {
         namedRules[name] = rule
     }
     

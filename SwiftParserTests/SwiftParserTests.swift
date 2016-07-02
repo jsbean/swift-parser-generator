@@ -116,9 +116,20 @@ class SwiftParserTests: XCTestCase {
             startRule = (^"primary")*!*
             
             let number = ("0"-"9")+ => push
-            addNamedRule("primary",   rule: ^"secondary" ~ (("+" ~ ^"secondary" => add) | ("-" ~ ^"secondary" => sub))*)
-            addNamedRule("secondary", rule: ^"tertiary" ~ (("*" ~ ^"tertiary" => mul) | ("/" ~ ^"tertiary" => div))*)
-            addNamedRule("tertiary",  rule: ("(" ~ ^"primary" ~ ")") | number)
+            addRule(
+                name: "primary",
+                rule: (
+                    ^"secondary" ~ (("+" ~ ^"secondary" => add) | ("-" ~ ^"secondary" => sub))*)
+                )
+            addRule(
+                name: "secondary",
+                rule: ^"tertiary" ~ (("*" ~ ^"tertiary" => mul) | ("/" ~ ^"tertiary" => div))*
+            )
+            
+            addRule(
+                name: "tertiary",
+                rule: ("(" ~ ^"primary" ~ ")") | number
+            )
         }
     }
     
@@ -131,8 +142,8 @@ class SwiftParserTests: XCTestCase {
             
             let num = ("0"-"9")+ => push
             
-            addNamedRule(
-                "term",
+            addRule(
+                name: "term",
                 rule: (
                     ((^"term" ~ "+" ~ ^"fact") => add) |
                     ((^"term" ~ "-" ~ ^"fact") => sub) |
@@ -140,8 +151,8 @@ class SwiftParserTests: XCTestCase {
                 )
             )
             
-            addNamedRule(
-                "fact",
+            addRule(
+                name: "fact",
                 rule: (
                     ((^"fact" ~ "*" ~ ^"term") => mul) |
                     ((^"fact" ~ "/" ~ ^"term") => div) |
