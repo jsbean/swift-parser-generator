@@ -180,10 +180,10 @@ public postfix func * (rule: ParserRule) -> ParserRule {
         parser.enter("zero or more")
         
         repeat {
-            let pos = reader.position
+            let position = reader.position
             flag = rule(parser: parser, reader: reader)
             if(!flag) {
-                reader.seek(pos)
+                reader.seek(position)
             } else {
                 matched = true
             }
@@ -206,9 +206,9 @@ public postfix func /~ (rule: ParserRule) -> ParserRule {
     return {(parser: Parser, reader: Reader) -> Bool in
         parser.enter("optionally")
         
-        let pos = reader.position
+        let position = reader.position
         if !rule(parser: parser, reader: reader) {
-            reader.seek(pos)
+            reader.seek(position)
         }
 
         parser.leave("optionally", true)
@@ -236,15 +236,15 @@ public func | (left: ParserRule, right: String) -> ParserRule {
 public func | (left: ParserRule, right: ParserRule) -> ParserRule {
     return {(parser: Parser, reader: Reader) -> Bool in
         parser.enter("|")
-        let pos = reader.position
+        let position = reader.position
         var result = left(parser: parser, reader: reader)
         if !result {
-			reader.seek(pos)
+			reader.seek(position)
             result = right(parser: parser, reader: reader)
         }
     
         if !result {
-            reader.seek(pos)
+            reader.seek(position)
         }
         
         parser.leave("|", result)
