@@ -407,7 +407,7 @@ public class Parser {
         
         let reader = StringReader(string: string)
         
-        if(startRule!(parser: self, reader: reader)) {
+        if startRule!(parser: self, reader: reader) {
             currentReader = reader
             
             for capture in captures {
