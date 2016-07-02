@@ -71,6 +71,9 @@ public class Parser {
         self.ruleDefinition = ruleDefinition
     }
 
+    /**
+     Add the given `rule` with the given `name`.
+     */
     public func addRule(name name: String, rule: ParserRule) {
         namedRules[name] = rule
     }
