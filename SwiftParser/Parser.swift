@@ -522,7 +522,7 @@ public class Parser {
     // TODO: find better way of doing this?
     // -- perhaps: inout depth: Int
     
-    var depth = 0
+    private var depth = 0
     
     private func leave(name: String) {
         if debugRules {
