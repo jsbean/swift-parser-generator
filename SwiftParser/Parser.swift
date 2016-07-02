@@ -524,28 +524,28 @@ public class Parser {
     
     var depth = 0
     
-    func leave(name: String) {
+    private func leave(name: String) {
         if debugRules {
             self.out("-- \(name)")
         }
         depth -= 1
     }
     
-    func leave(name: String, _ res: Bool) {
+    private func leave(name: String, _ res: Bool) {
         if debugRules {
             self.out("-- \(name):\t\(res)")
         }
         depth -= 1
     }
     
-    func enter(name: String) {
+    private func enter(name: String) {
         depth += 1
         if debugRules {
             self.out("++ \(name)")
         }
     }
     
-    func out(name: String) {
+    private func out(name: String) {
         let spaces = (0 ..< (depth - 1)).map { _ in "  " }
         print("\(spaces)\(name)")
     }
