@@ -377,8 +377,7 @@ public class Parser {
 	public var whitespace: ParserRule = (" " | "\t" | "\r\n" | "\r" | "\n")*
 
     public var text: String {
-        if let capture = currentCapture { return capture.text }
-        return ""
+        return currentCapture?.text ?? ""
     }
     
     public init() {
