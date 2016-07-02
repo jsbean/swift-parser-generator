@@ -320,7 +320,7 @@ public postfix func ++ (left: ParserRule) -> ParserRule {
 public typealias ParserRuleDefinition = () -> ParserRule
 infix operator <- {}
 public func <- (left: Parser, right: ParserRuleDefinition) -> () {
-    left.rule_definitions.append(right)
+    left.ruleDefinitions.append(right)
 }
 
 public class Parser {
@@ -339,15 +339,15 @@ public class Parser {
         }
     }
     
-    public var rule_definition: ParserRuleDefinition?
-    public var rule_definitions: [ParserRuleDefinition] = []
-    public var start_rule: ParserRule?
-    public var debug_rules = false
+    public var ruleDefinition: ParserRuleDefinition?
+    public var ruleDefinitions: [ParserRuleDefinition] = []
+    public var startRule: ParserRule?
+    public var debugRules = false
 
     public var captures: [ParserCapture] = []
-    public var current_capture:ParserCapture?
-    public var last_capture:ParserCapture?
-    public var current_reader:Reader?
+    public var currentCapture: ParserCapture?
+    public var lastCapture: ParserCapture?
+    public var currentReader: Reader?
 
 	var named_rules: Dictionary<String,ParserRule> = Dictionary<String,ParserRule>()
     var currentNamedRule = ""
@@ -358,7 +358,7 @@ public class Parser {
 
     public var text:String {
         get {
-            if let capture = current_capture {
+            if let capture = currentCapture {
                 return capture.text
             }
             
@@ -371,7 +371,7 @@ public class Parser {
     }
     
     public init(rule_def: () -> ParserRule) {
-        rule_definition = rule_def
+        ruleDefinition = rule_def
     }
     
     public func add_named_rule(name:String, rule: ParserRule) {
@@ -383,28 +383,28 @@ public class Parser {
     }
     
     public func parse(string: String) -> Bool {
-        if(start_rule == nil) {
-            start_rule = rule_definition!()
+        if(startRule == nil) {
+            startRule = ruleDefinition!()
         }
         
         captures.removeAll(keepCapacity: true)
-        current_capture = nil
-        last_capture = nil
+        currentCapture = nil
+        lastCapture = nil
         
         let reader = StringReader(string: string)
         
-        if(start_rule!(parser: self, reader: reader)) {
-            current_reader = reader
+        if(startRule!(parser: self, reader: reader)) {
+            currentReader = reader
             
             for capture in captures {
-                last_capture = current_capture
-                current_capture = capture
+                lastCapture = currentCapture
+                currentCapture = capture
                 capture.action()
             }
 
-            current_reader = nil
-            current_capture = nil
-            last_capture = nil
+            currentReader = nil
+            currentCapture = nil
+            lastCapture = nil
             return true
         }
         
@@ -413,20 +413,20 @@ public class Parser {
     
     var depth = 0
     func leave(name:String) {
-        if(debug_rules) {
+        if(debugRules) {
             self.out("-- \(name)")
         }
         depth -= 1
     }
     func leave(name:String, _ res:Bool) {
-        if(debug_rules) {
+        if(debugRules) {
             self.out("-- \(name):\t\(res)")
         }
         depth -= 1
     }
     func enter(name:String) {
         depth += 1
-        if(debug_rules) {
+        if(debugRules) {
             self.out("++ \(name)")
         }
     }
