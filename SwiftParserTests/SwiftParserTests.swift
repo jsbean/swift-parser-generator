@@ -84,8 +84,7 @@ class SwiftParserTests: XCTestCase {
             }
             
             stack.append(value)
-        }
-        
+        }   
     }
     
     class Arithmetic: Parser {
