@@ -40,13 +40,13 @@ class SwiftParserTests: XCTestCase {
         }
         
         func exponent() {
-            performBinaryOperation{ (left: Double, right: Double) -> Double in
+            performBinaryOperation { (left: Double, right: Double) -> Double in
                 return pow(left, right)
             }
         }
         
         func multiply() {
-            performBinaryOperation{ (left: Double, right: Double) -> Double in
+            performBinaryOperation { (left: Double, right: Double) -> Double in
                 return left * right
             }
         }
@@ -84,10 +84,11 @@ class SwiftParserTests: XCTestCase {
             }
             
             stack.append(value)
-        }   
+        }
     }
     
     class Arithmetic: Parser {
+        
         var calculator = Calculator()
         
         func push() {
