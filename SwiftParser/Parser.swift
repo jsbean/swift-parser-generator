@@ -114,7 +114,7 @@ public func - (left: Character, right: Character) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("range [\(left)-\(right)]")
         
-        let pos = reader.position
+        let position = reader.position
         
         let lower = String(left)
         let upper = String(right)
@@ -123,7 +123,7 @@ public func - (left: Character, right: Character) -> ParserRule {
         parser.leave("range \t\t\(character)", found)
         
         if !found {
-            reader.seek(pos)
+            reader.seek(position)
         }
         
         return found
