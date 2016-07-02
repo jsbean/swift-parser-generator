@@ -12,7 +12,7 @@ public typealias ParserRule = (parser: Parser, reader: Reader) -> Bool
 public typealias ParserAction = () -> ()
 
 // EOF operator
-postfix operator *!* {}
+postfix operator *!* { }
 
 public postfix func *!* (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
@@ -46,7 +46,7 @@ public prefix func ^(name: String) -> ParserRule {
 }
 
 // match a regex
-prefix operator %! {}
+prefix operator %! { }
 
 public prefix func %!(pattern: String) -> ParserRule {
     
@@ -82,7 +82,7 @@ public prefix func %!(pattern: String) -> ParserRule {
 }
 
 // match a literal string
-prefix operator % {}
+prefix operator % { }
 
 public prefix func %(lit: String) -> ParserRule {
     return literal(lit)
@@ -142,7 +142,7 @@ public prefix func !(lit: String) -> ParserRule {
 }
 
 // match one or more
-postfix operator + {}
+postfix operator + { }
 
 public postfix func + (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
@@ -172,7 +172,7 @@ public postfix func + (lit: String) -> ParserRule {
 
 
 // match zero or more
-postfix operator * {}
+postfix operator * { }
 public postfix func * (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         var flag: Bool
@@ -199,7 +199,7 @@ public postfix func * (lit: String) -> ParserRule {
 }
 
 // optional
-postfix operator /~ {}
+postfix operator /~ { }
 
 public postfix func /~ (rule: ParserRule) -> ParserRule {
     
@@ -334,7 +334,7 @@ public postfix func ++ (left: ParserRule) -> ParserRule {
 
 public typealias ParserRuleDefinition = () -> ParserRule
 
-infix operator <- {}
+infix operator <- { }
 
 public func <- (left: Parser, right: ParserRuleDefinition) -> () {
     left.ruleDefinitions.append(right)
@@ -392,11 +392,13 @@ public class Parser {
         namedRules[name] = rule
     }
     
+    // For subclasses to override
     public func rules() {
         
     }
     
     public func parse(string: String) -> Bool {
+        
         if startRule == nil {
             startRule = ruleDefinition!()
         }
@@ -426,6 +428,7 @@ public class Parser {
     }
     
     var depth = 0
+    
     func leave(name: String) {
         if debugRules {
             self.out("-- \(name)")
