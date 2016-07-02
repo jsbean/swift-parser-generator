@@ -398,9 +398,15 @@ public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
     }
 }
 
-/** The ~~ operator matches two following elements, optionally with whitespace (Parser.whitespace) in between. */
 infix operator ~~ { associativity left precedence 10 }
 
+/**
+ Match two following elements, optionally with whitespace.
+ 
+ - note: You may configure the whitespace with the `Parser.whitespace` static property.
+ 
+ - returns: `ParserRule`.
+ */
 public func ~~ (left: String, right: String) -> ParserRule {
 	return literal(left) ~~ literal(right)
 }
@@ -462,13 +468,14 @@ public class Parser {
     public var lastCapture: ParserCapture?
     public var currentReader: Reader?
 
-    var namedRules: [String: ParserRule] = [:]
-    var currentNamedRule = ""
+    private var namedRules: [String: ParserRule] = [:]
+    private var currentNamedRule = ""
 
 	/** This rule determines what is seen as 'whitespace' by the '~~'  operator, which allows whitespace between two
 	 following items.*/
 	public var whitespace: ParserRule = (" " | "\t" | "\r\n" | "\r" | "\n")*
 
+        /// Text held by `currentCapture`, if present. Otherwise an empty string.
     public var text: String {
         return currentCapture?.text ?? ""
     }
