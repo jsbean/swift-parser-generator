@@ -123,12 +123,31 @@ class SwiftParserTests: XCTestCase {
     
     // A recursive parser like the following will always fail as it results in an infinite recursive loop.  Code has been added to try to catch this, but you have been warned!
     class RecursiveArithmetic: Arithmetic {
+        
         override func rules() {
+            
             startRule = (^"term")*!*
             
             let num = ("0"-"9")+ => push
-            addNamedRule("term", rule: ((^"term" ~ "+" ~ ^"fact") => add) | ((^"term" ~ "-" ~ ^"fact") => sub) | ^"fact")
-            addNamedRule("fact", rule: ((^"fact" ~ "*" ~ ^"term") => mul) | ((^"fact" ~ "/" ~ ^"term") => div) | ("(" ~ ^"term" ~ ")") | num)
+            
+            addNamedRule(
+                "term",
+                rule: (
+                    ((^"term" ~ "+" ~ ^"fact") => add) |
+                    ((^"term" ~ "-" ~ ^"fact") => sub) |
+                    ^"fact"
+                )
+            )
+            
+            addNamedRule(
+                "fact",
+                rule: (
+                    ((^"fact" ~ "*" ~ ^"term") => mul) |
+                    ((^"fact" ~ "/" ~ ^"term") => div) |
+                    ("(" ~ ^"term" ~ ")") |
+                    num
+                )
+            )
         }
     }
 
