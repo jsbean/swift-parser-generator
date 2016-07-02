@@ -32,12 +32,12 @@ public protocol Reader {
     func substring(startingAt startIndex: Int, endingAt endIndex: Int) -> String
     
     /**
-     - returns: `true` if `Reader` has reached the end of the file. Otherwise, `false`.
-     */
-    func eof() -> Bool
-    
-    /**
      - returns: Remaining, unconsumed component of string.
      */
     func remainder() -> String
+    
+    /**
+     - returns: `true` if `Reader` has reached the end of the file. Otherwise, `false`.
+     */
+    func eof() -> Bool
 }

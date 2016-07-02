@@ -103,9 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				65F1D3CB195039290077E785 /* SwiftParser.h */,
-				65F1D3E2195039430077E785 /* Parser.swift */,
 				65F1D3E4195044B60077E785 /* Reader.swift */,
 				65F1D3EC195049970077E785 /* StringReader.swift */,
+				65F1D3E2195039430077E785 /* Parser.swift */,
 				65F1D3C9195039290077E785 /* Supporting Files */,
 			);
 			path = SwiftParser;
