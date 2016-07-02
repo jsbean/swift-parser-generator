@@ -9,6 +9,7 @@
 import Foundation
 
 public class StringReader: Reader {
+    
     var string: String
     var index: String.Index
     
@@ -20,7 +21,7 @@ public class StringReader: Reader {
     
     init(string: String) {
         self.string = string
-        index = string.startIndex
+        self.index = string.startIndex
     }
     
     public func seek(position: Int) {

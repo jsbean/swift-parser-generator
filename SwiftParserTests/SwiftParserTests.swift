@@ -112,6 +112,7 @@ class SwiftParserTests: XCTestCase {
         }
         
         override func rules() {
+            
             startRule = (^"primary")*!*
             
             let number = ("0"-"9")+ => push
