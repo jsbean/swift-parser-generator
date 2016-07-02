@@ -53,7 +53,7 @@ public prefix func %!(pattern: String) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("regex '\(pattern)'")
         
-        let pos = reader.position
+        let position = reader.position
         
         var found = true
         let remainder = reader.remainder()
@@ -64,7 +64,7 @@ public prefix func %!(pattern: String) -> ParserRule {
             if let match = match {
                 let res = target.substringWithRange(match.range)
                 // reset to end of match
-                reader.seek(pos + res.characters.count)
+                reader.seek(position + res.characters.count)
                 
                 parser.leave("regex", true)
                 return true
@@ -74,7 +74,7 @@ public prefix func %!(pattern: String) -> ParserRule {
         }
         
         if !found {
-            reader.seek(pos)
+            reader.seek(position)
             parser.leave("regex", false)
         }
         return false
