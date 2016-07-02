@@ -146,7 +146,7 @@ postfix operator + { }
 
 public postfix func + (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
-        let pos = reader.position
+        let position = reader.position
         var found = false
         var flag: Bool
 
@@ -158,7 +158,7 @@ public postfix func + (rule: ParserRule) -> ParserRule {
         } while flag
         
         if !found {
-            reader.seek(pos)
+            reader.seek(position)
         }
         
         parser.leave("one or more", found)
