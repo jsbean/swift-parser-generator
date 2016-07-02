@@ -14,9 +14,7 @@ public class StringReader: Reader {
     var index: String.Index
     
     public var position: Int {
-        get {
-            return string.startIndex.distanceTo(index)
-        }
+        return string.startIndex.distanceTo(index)
     }
     
     init(string: String) {
