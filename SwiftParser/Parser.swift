@@ -420,6 +420,7 @@ public func <- (left: Parser, right: ParserRuleDefinition) -> () {
     left.ruleDefinitions.append(right)
 }
 
+/// Parser
 public class Parser {
     
     public struct ParserCapture: CustomStringConvertible {
@@ -506,6 +507,9 @@ public class Parser {
         
         return false
     }
+    
+    // TODO: find better way of doing this?
+    // -- perhaps: inout depth: Int
     
     var depth = 0
     
