@@ -484,6 +484,11 @@ public class Parser {
         
     }
     
+    /**
+     Parse a given `string`.
+     
+     - returns: `true` if `string` ws successfully parsed. Otherwise, `false`.
+     */
     public func parse(string: String) -> Bool {
         
         if startRule == nil {
