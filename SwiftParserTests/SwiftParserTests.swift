@@ -64,21 +64,21 @@ class SwiftParserTests: XCTestCase {
             var value: Double = 0
             var decimal = -1
             var counter = 0
-            for ch in text.utf8 {
-                if(ch == 46) {
+            for character in text.utf8 {
+                if character == 46 {
                     decimal = counter
                 } else {
-                    let digit: Int = Int(ch) - 48
+                    let digit = Int(character) - 48
                     value = value * Double(10.0) + Double(digit)
                     counter = counter + 1
                 }
             }
             
-            if(decimal >= 0) {
+            if decimal >= 0 {
                 value = value / pow(10.0, Double(counter - decimal))
             }
             
-            if(_negative) {
+            if _negative {
                 value = -value
             }
             
