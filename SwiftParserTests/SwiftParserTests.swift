@@ -12,8 +12,9 @@ import SwiftParser
 class SwiftParserTests: XCTestCase {
     
     class Calculator {
+        
         var stack: [Double] = []
-        var _negative = false
+        var isNegative = false
         
         var result: Double {
             return stack[stack.count-1]
@@ -57,7 +58,7 @@ class SwiftParserTests: XCTestCase {
         }
         
         func negative() {
-            _negative = !_negative
+            isNegative = !isNegative
         }
         
         func pushNumber(text: String) {
@@ -78,7 +79,7 @@ class SwiftParserTests: XCTestCase {
                 value = value / pow(10.0, Double(counter - decimal))
             }
             
-            if _negative {
+            if isNegative {
                 value = -value
             }
             
