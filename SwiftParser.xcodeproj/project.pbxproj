@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07FD29D21D2842CE00499D6E /* Parser+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD29D11D2842CE00499D6E /* Parser+Operators.swift */; };
 		65F1D3CC195039290077E785 /* SwiftParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 65F1D3CB195039290077E785 /* SwiftParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65F1D3D2195039290077E785 /* SwiftParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F1D3C6195039290077E785 /* SwiftParser.framework */; };
 		65F1D3D9195039290077E785 /* SwiftParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F1D3D8195039290077E785 /* SwiftParserTests.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07FD29D11D2842CE00499D6E /* Parser+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Operators.swift"; sourceTree = "<group>"; };
 		6537612319515E8A00A519A3 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		659C3CD11964102E001D10F7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65F1D3C6195039290077E785 /* SwiftParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				65F1D3E4195044B60077E785 /* Reader.swift */,
 				65F1D3EC195049970077E785 /* StringReader.swift */,
 				65F1D3E2195039430077E785 /* Parser.swift */,
+				07FD29D11D2842CE00499D6E /* Parser+Operators.swift */,
 				65F1D3C9195039290077E785 /* Supporting Files */,
 			);
 			path = SwiftParser;
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07FD29D21D2842CE00499D6E /* Parser+Operators.swift in Sources */,
 				65F1D3E5195044B60077E785 /* Reader.swift in Sources */,
 				65F1D3E3195039430077E785 /* Parser.swift in Sources */,
 				65F1D3ED195049970077E785 /* StringReader.swift in Sources */,
