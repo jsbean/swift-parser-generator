@@ -13,7 +13,7 @@ public protocol Reader {
     
     func seek(position: Int)
     func read() -> Character
-    func substring(starting_at:Int, ending_at:Int) -> String
+    func substring(startingAt:Int, endingAt:Int) -> String
     func eof() -> Bool
     func remainder() -> String
 }

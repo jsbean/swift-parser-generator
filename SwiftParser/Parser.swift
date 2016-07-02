@@ -331,7 +331,7 @@ public class Parser {
         let reader:Reader
 
 		var text: String {
-            return reader.substring(start, ending_at:end)
+            return reader.substring(start, endingAt:end)
         }
 
         public var description: String {
