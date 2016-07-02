@@ -16,7 +16,7 @@ class SwiftParserTests: XCTestCase {
         var _negative = false
         
         var result: Double {
-        get { return stack[stack.count-1] }
+            return stack[stack.count-1]
         }
         
         func performBinaryOperation(op: (left: Double, right: Double) -> Double) {
@@ -27,35 +27,33 @@ class SwiftParserTests: XCTestCase {
         }
         
         func add() {
-            performBinaryOperation({(left: Double, right: Double) -> Double in
+            performBinaryOperation { (left: Double, right: Double) -> Double in
                 return left + right
-                })
+            }
         }
         
         func divide() {
-            performBinaryOperation({(left: Double, right: Double) -> Double in
+            performBinaryOperation { (left: Double, right: Double) -> Double in
                 return left / right
-                })
+            }
         }
         
         func exponent() {
-            performBinaryOperation({(left: Double, right: Double) -> Double in
+            performBinaryOperation{ (left: Double, right: Double) -> Double in
                 return pow(left, right)
-                })
+            }
         }
         
         func multiply() {
-            performBinaryOperation({(left: Double, right: Double) -> Double in
+            performBinaryOperation{ (left: Double, right: Double) -> Double in
                 return left * right
-                })
-            
+            }
         }
         
         func subtract() {
-            performBinaryOperation({(left: Double, right: Double) -> Double in
+            performBinaryOperation { (left: Double, right: Double) -> Double in
                 return left - right
-                })
-            
+            }
         }
         
         func negative() {
