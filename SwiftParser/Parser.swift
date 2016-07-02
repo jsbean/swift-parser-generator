@@ -89,13 +89,13 @@ public prefix func %(lit: String) -> ParserRule {
 }
 
 public func literal(string: String) -> ParserRule {
+    
     return { (parser: Parser, reader: Reader) -> Bool in
+        
         parser.enter("literal '\(string)'")
-        
         let pos = reader.position
-        
-        for ch in string.characters {
-            let flag = ch == reader.read()
+        for character in string.characters {
+            let flag = character == reader.read()
             if !flag {
                 reader.seek(pos)
                 
