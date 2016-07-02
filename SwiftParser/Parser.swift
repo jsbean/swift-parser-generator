@@ -342,7 +342,7 @@ public func <- (left: Parser, right: ParserRuleDefinition) -> () {
 
 public class Parser {
     
-    public struct ParserCapture : CustomStringConvertible {
+    public struct ParserCapture: CustomStringConvertible {
         
         public var start: Int
         public var end: Int
