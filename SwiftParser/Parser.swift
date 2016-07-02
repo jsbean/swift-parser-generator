@@ -173,6 +173,7 @@ public postfix func + (lit: String) -> ParserRule {
 
 // match zero or more
 postfix operator * { }
+
 public postfix func * (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         var flag: Bool
@@ -278,7 +279,9 @@ public func ~ (left : ParserRule, right: ParserRule) -> ParserRule {
 
 // on match
 infix operator => { associativity right precedence 100 }
+
 public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
+    
     return { (parser: Parser, reader: Reader) -> Bool in
         let start = reader.position
         let captureCount = parser.captures.count
