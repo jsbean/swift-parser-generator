@@ -61,8 +61,8 @@ public prefix func %!(pattern: String) -> ParserRule {
             let re = try NSRegularExpression(pattern: pattern, options: [])
             let target = remainder as NSString
             let match = re.firstMatchInString(remainder, options: [], range: NSMakeRange(0, target.length))
-            if let m = match {
-                let res = target.substringWithRange(m.range)
+            if let match = match {
+                let res = target.substringWithRange(match.range)
                 // reset to end of match
                 reader.seek(pos + res.characters.count)
                 
