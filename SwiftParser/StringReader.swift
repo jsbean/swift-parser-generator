@@ -48,5 +48,4 @@ public class StringReader: Reader {
             string.startIndex.advancedBy(startIndex)..<string.startIndex.advancedBy(endIndex)
         )
     }
-    
 }
