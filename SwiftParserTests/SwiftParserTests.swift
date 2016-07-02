@@ -70,7 +70,7 @@ class SwiftParserTests: XCTestCase {
                     decimal = counter
                 } else {
                     let digit = Int(character) - 48
-                    value = value * Double(10.0) + Double(digit)
+                    value = value * 10.0 + Double(digit)
                     counter = counter + 1
                 }
             }
