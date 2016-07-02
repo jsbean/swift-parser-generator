@@ -36,7 +36,7 @@ prefix operator ^ { }
  
  - TODO: Ensure cycles are prevented where possible.
  */
-public prefix func ^(name: String) -> ParserRule {
+public prefix func ^ (name: String) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("named rule: \(name)")
         
@@ -58,7 +58,6 @@ public prefix func ^(name: String) -> ParserRule {
     }
 }
 
-// match a regex
 prefix operator %! { }
 
 /**
@@ -66,7 +65,7 @@ prefix operator %! { }
  
  - returns: `ParserRule`.
  */
-public prefix func %!(pattern: String) -> ParserRule {
+public prefix func %! (pattern: String) -> ParserRule {
     
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("regex '\(pattern)'")
@@ -107,7 +106,7 @@ prefix operator % { }
  
  - returns: `Parser Rule`.
  */
-public prefix func %(lit: String) -> ParserRule {
+public prefix func % (lit: String) -> ParserRule {
     return literal(lit)
 }
 
@@ -164,13 +163,13 @@ public func - (left: Character, right: Character) -> ParserRule {
  
  - returns: `ParserRule`.
  */
-public prefix func !(rule: ParserRule) -> ParserRule {
+public prefix func ! (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         return !rule(parser: parser, reader: reader)
     }
 }
 
-public prefix func !(lit: String) -> ParserRule {
+public prefix func ! (lit: String) -> ParserRule {
     return !literal(lit)
 }
 
@@ -319,7 +318,7 @@ public func | (left: ParserRule, right: ParserRule) -> ParserRule {
 }
 
 // match all
-infix operator  ~ { associativity left precedence 10 }
+infix operator ~ { associativity left precedence 10 }
 
 /**
  Match all.
@@ -400,7 +399,7 @@ public func => (rule : ParserRule, action: ParserAction) -> ParserRule {
 }
 
 /** The ~~ operator matches two following elements, optionally with whitespace (Parser.whitespace) in between. */
-infix operator  ~~ { associativity left precedence 10 }
+infix operator ~~ { associativity left precedence 10 }
 
 public func ~~ (left: String, right: String) -> ParserRule {
 	return literal(left) ~~ literal(right)
