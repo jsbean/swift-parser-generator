@@ -14,15 +14,28 @@ public typealias ParserAction = () -> ()
 // EOF operator
 postfix operator *!* { }
 
+/**
+ Match end-of-file.
+ 
+ - returns: `ParserRule`.
+ */
 public postfix func *!* (rule: ParserRule) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         return rule(parser: parser, reader: reader) && reader.eof()
     }
 }
 
-// call a named rule - this allows for cycles, so be careful!
 prefix operator ^ { }
 
+/**
+ Call a rule by a given `name`.
+ 
+ - returns: `ParserRule`.
+ 
+ - warning: Allows cycles.
+ 
+ - TODO: Ensure cycles are prevented where possible.
+ */
 public prefix func ^(name: String) -> ParserRule {
     return { (parser: Parser, reader: Reader) -> Bool in
         parser.enter("named rule: \(name)")
@@ -488,6 +501,8 @@ public class Parser {
      Parse a given `string`.
      
      - returns: `true` if `string` ws successfully parsed. Otherwise, `false`.
+     
+     - TODO: Find way of unwrapping `startRule` elegantly.
      */
     public func parse(string: String) -> Bool {
         
