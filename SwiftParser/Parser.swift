@@ -461,11 +461,17 @@ public class Parser {
         return currentCapture?.text ?? ""
     }
     
+    /**
+     Create a `Parser`.
+     */
     public init() {
         rules()
     }
     
-    public init(ruleDefinition: () -> ParserRule) {
+    /**
+     Create a `Parser` with a `ParserRuleDefinition`.
+     */
+    public init(ruleDefinition: ParserRuleDefinition) {
         self.ruleDefinition = ruleDefinition
     }
     
