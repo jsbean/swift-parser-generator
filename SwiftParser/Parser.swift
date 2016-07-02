@@ -8,9 +8,12 @@
 
 import Foundation
 
+/**
+ Function that returns whether of not the given `reader` can be parsed by the given `parser`.
+*/
 public typealias ParserRule = (parser: Parser, reader: Reader) -> Bool
-public typealias ParserAction = () -> ()
 
+public typealias ParserAction = () -> ()
 
 /// Parser
 public class Parser {
