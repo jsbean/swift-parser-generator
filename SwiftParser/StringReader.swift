@@ -20,7 +20,7 @@ public class StringReader: Reader {
     
     init(string: String) {
         self.string = string
-        index = string.startIndex;
+        index = string.startIndex
     }
     
     public func seek(position: Int) {
@@ -32,10 +32,10 @@ public class StringReader: Reader {
             let result = string[index]
             index = index.successor()
             
-            return result;
+            return result
         }
         
-        return "\u{2004}";
+        return "\u{2004}"
     }
     
     public func eof() -> Bool {
