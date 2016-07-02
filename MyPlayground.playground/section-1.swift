@@ -1,6 +1,3 @@
-// Playground - noun: a place where people can play
-
-
 class Foobar {
     var op : () -> ()
     
@@ -19,3 +16,4 @@ var x = Foobar { print("Stuff") }
 
 x.go()
 x.go()
+
