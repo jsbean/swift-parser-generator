@@ -26,13 +26,13 @@ public prefix func ^(name:String) -> ParserRule {
         parser.enter("named rule: \(name)")
         
         // check to see if this would cause a recursive loop?
-        if(parser.current_named_rule != name) {
-            let old_named_rule = parser.current_named_rule
+        if(parser.currentNamedRule != name) {
+            let old_named_rule = parser.currentNamedRule
             let rule = parser.named_rules[name]
         
-            parser.current_named_rule = name
+            parser.currentNamedRule = name
             let result = rule!(parser: parser, reader: reader)
-            parser.current_named_rule = old_named_rule
+            parser.currentNamedRule = old_named_rule
             
             parser.leave("named rule: \(name)",result)
             return result
@@ -350,7 +350,7 @@ public class Parser {
     public var current_reader:Reader?
 
 	var named_rules: Dictionary<String,ParserRule> = Dictionary<String,ParserRule>()
-    var current_named_rule = ""
+    var currentNamedRule = ""
 
 	/** This rule determines what is seen as 'whitespace' by the '~~'  operator, which allows whitespace between two
 	 following items.*/
