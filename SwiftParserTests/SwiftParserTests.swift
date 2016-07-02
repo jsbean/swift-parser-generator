@@ -87,7 +87,7 @@ class SwiftParserTests: XCTestCase {
         
     }
     
-    class Arith: Parser {
+    class Arithmetic: Parser {
         var calculator = Calculator()
         
         func push() {
@@ -121,7 +121,7 @@ class SwiftParserTests: XCTestCase {
     }
     
     // A recursive parser like the following will always fail as it results in an infinite recursive loop.  Code has been added to try to catch this, but you have been warned!
-    class RecursiveArith : Arith {
+    class RecursiveArithmetic: Arithmetic {
         override func rules() {
             startRule = (^"term")*!*
             
@@ -143,30 +143,30 @@ class SwiftParserTests: XCTestCase {
     }
     
     func testSimple() {
-        let a = Arith()
+        let a = Arithmetic()
         XCTAssert(a.parse("1+2"))
         XCTAssertEqual(a.calculator.result, 3)
     }
 
     func testComplex() {
-        let a = Arith()
+        let a = Arithmetic()
         XCTAssert(a.parse("6*7-3+20/2-12+(30-5)/5"))
         XCTAssertEqual(a.calculator.result, 42)
     }
 
     func testRecursiveSimple() {
-        let a = RecursiveArith()
+        let a = RecursiveArithmetic()
         XCTAssertFalse(a.parse("1+2"))
     }
     
     func testRecursiveComplex() {
-        let a = RecursiveArith()
+        let a = RecursiveArithmetic()
         
         XCTAssertFalse(a.parse("6*7-3+20/2-12+(30-5)/5"))
     }
     
     func testShouldNotParse() {
-        let a = Arith()
+        let a = Arithmetic()
         XCTAssertFalse(a.parse("1+"))
         XCTAssertFalse(a.parse("xxx"))
     }
